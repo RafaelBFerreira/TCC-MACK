@@ -20,4 +20,5 @@ path = 'imgs/'
 #Passa o tesseract nas imagens da pasta img
 for img in my_imgs:
     phrase = pytesseract.image_to_string(Image.open(path + img), lang='por')
-    print(img + "--->" + phrase)
+    print(img)
+    print(phrase)
