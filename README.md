@@ -7,7 +7,7 @@ Repositório git do projeto TCC 2021
  - [**Tesseract-Download**](https://github.com/UB-Mannheim/tesseract/wiki)
 
 ## **Como usar**
-1. Python 3.8.8 instalado ou superior
+1. Python 3.7.2 instalado ou superior
 2. Instalar o Tesseract e selecionar a linguagem portugues no auxiliar de instalação
 3. Instalar os pacotes do arquivo *requeriments.txt*
 
