@@ -1,1 +1,3 @@
 virtualenv/
+dataframe.csv
+__pycache__/
