@@ -25,6 +25,6 @@ pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files/Tesseract-OCR/tesserac
 
 Rafael Barbosa Ferreira - 31785311
 
-Lucas Uezima Kenjie
+Lucas Kenji Uezima
 
-Henrique
+Henrique Yudi Yassuda Nishimoto - 41719654
