@@ -2,3 +2,5 @@ virtualenv/
 dataframe.csv
 __pycache__/
 .vscode/
+*.tmp
+~$*
