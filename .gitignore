@@ -4,3 +4,14 @@ __pycache__/
 .vscode/
 *.tmp
 ~$*
+*.box
+*.tif
+*.tr
+*inttemp* 
+*normproto*
+*pffmtable*
+*shapetable*
+*unicharset*
+*traineddata*
+font_properties.txt
+confidence
