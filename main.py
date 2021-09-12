@@ -1,28 +1,44 @@
+from pytesseract import pytesseract,Output
 from PIL import Image
-import pytesseract 
-import os
 import pandas as pd
 
 
-#Importa o tesseract
-pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files/Tesseract-OCR/tesseract.exe'
 
-#Dicionario para guardar o resultado das imgs
-my_dict = {}
+def get_confidence(image_path,lang):
+    img  = Image.open(image_path)
+    texto = pytesseract.image_to_data(img, lang=lang,output_type=Output.DICT)
 
-#Passa o tesseract nas imagens da pasta imgs e salva o resultado no dicionario
-for root, dirs, files in os.walk("imgs"):
-    for filename in files:
-        try:
-            texto = pytesseract.image_to_string(Image.open('imgs/' + filename), lang='por')
-            my_dict[filename] = texto
-        except Exception as msg:
-            print("Erro: {}".format(msg))
-        
-#Transforma o dicionário em um dataframe
-df = pd.DataFrame(my_dict.items(), columns=['NOME_IMG', 'TEXTO_EXT'])
+    result = {}
 
-#Transforma dataframe em um .csv
-df.to_csv('dataframe.csv', encoding="utf-8")
+    for i in range(len(texto['text'])):
+        if len(texto['text'][i]) > 0:
+            #print('TEXTO: {}\CONFIDENCIA: {}\n'.format(texto['text'][i],texto['conf'][i]))
+            
+            result[texto['text'][i]] = texto['conf'][i]
 
-print(df)
+    #Transforma o dicionário em um dataframe
+    df_result = pd.DataFrame(result.items(),columns=['TEXTO', 'CONFIDENCIA'])
+
+    #Transforma dataframe em um .csv
+    df_result.to_csv('dataframe.csv', encoding="utf-8")
+
+    return df_result
+
+
+a = get_confidence('./imgs/img5.png','por.rafael')
+
+print(a)
+
+
+
+
+'''a = get_confidence('./imgs/img.png','por')
+b = get_confidence('./imgs/img.png','por.raff+por')
+c = get_confidence('./imgs/img.png','por+por.raff')
+d = get_confidence('./imgs/img.png','por.raff')
+
+print(a['TEXTO'],a['CONFIDENCIA'])
+print(b['TEXTO'],b['CONFIDENCIA'])
+print(c['TEXTO'],c['CONFIDENCIA'])
+print(d['TEXTO'],d['CONFIDENCIA'])'''
+
